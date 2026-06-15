@@ -216,3 +216,10 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# Custom data files
+*.csv
+*.db
+*.sqlite
+*.pkl
+*.joblib
