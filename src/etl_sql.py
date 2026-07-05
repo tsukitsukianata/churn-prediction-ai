@@ -37,7 +37,7 @@ def churn_by(column):
         CASE
             WHEN MonthlyCharges <= 30 THEN '0-30'
             WHEN MonthlyCharges <= 60 THEN '31-60'
-            WHEN MonthlyCharges <= 48 THEN '61-90'
+            WHEN MonthlyCharges <= 90 THEN '61-90'
             ELSE '91+'
         END as MonthlyCharges_group,
         AVG(CASE WHEN Churn='Yes' THEN 1.0 ELSE 0.0 END) as churn_rate
