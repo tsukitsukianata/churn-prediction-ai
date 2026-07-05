@@ -221,6 +221,6 @@ __marimo__/
 *.csv
 *.db
 *.sqlite
-*.pkl
+
 *.joblib
 *.ipynb
