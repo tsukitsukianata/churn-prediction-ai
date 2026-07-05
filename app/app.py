@@ -3,6 +3,7 @@ from pathlib import Path
 import joblib
 
 from app.preprocessing import preprocess_customer
+from app.recommendations import get_recommendations
 
 # -----------------------------
 # Load model artifacts
@@ -61,6 +62,28 @@ def predict():
     else:
         prediction_text = "Customer is likely to stay."
 
+    # Generate recommendations
+    recommendations = get_recommendations(
+        form_data,
+        churn_probability
+    )
+
+    # Build recommendation HTML
+    recommendation_html = ""
+
+    if recommendations:
+        recommendation_html += "<h3>Recommended Retention Actions</h3><ul>"
+
+        for recommendation in recommendations:
+            recommendation_html += f"<li>{recommendation}</li>"
+
+        recommendation_html += "</ul>"
+    else:
+        recommendation_html = (
+            "<h3>Recommended Retention Actions</h3>"
+            "<p>No immediate retention action is required.</p>"
+        )
+
     # Temporary output
     return f"""
     <h2>Prediction Result</h2>
@@ -70,6 +93,10 @@ def predict():
     <p>Probability of Staying: {stay_probability:.2%}</p>
 
     <p>Probability of Churning: {churn_probability:.2%}</p>
+
+    <br>
+
+    {recommendation_html}
 
     <br>
 
