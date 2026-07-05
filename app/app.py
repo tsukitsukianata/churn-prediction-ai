@@ -2,7 +2,7 @@ from flask import Flask, render_template, request
 from pathlib import Path
 import joblib
 
-from preprocessing import preprocess_customer
+from app.preprocessing import preprocess_customer
 
 # -----------------------------
 # Load model artifacts
