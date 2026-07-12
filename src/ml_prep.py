@@ -88,7 +88,7 @@ X_test[numeric_cols] = scaler.transform(
 X_test[numeric_cols]
 )
 
-if __name__ == "main":
+if __name__ == "__main__":
     print("X_train:", X_train.shape)
     print("X_test :", X_test.shape)
     print("y_train:", y_train.shape)

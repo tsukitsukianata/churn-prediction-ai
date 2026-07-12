@@ -6,6 +6,7 @@ from pathlib import Path
 csv_path = Path(__file__).parent.parent / 'data' / 'Telco-Customer-Churn.csv'
 df = pd.read_csv(csv_path)
 
+
 # Converts TotalCharges column to numeric and also replaces non-numeric with NaN (errors="coerce")
 df["TotalCharges"] = pd.to_numeric(df["TotalCharges"], errors="coerce")
 df = df.dropna()
@@ -55,8 +56,11 @@ def churn_by(column):
 
 churn_by_list = ["Contract", "PaymentMethod", "InternetService", "SeniorCitizen", "PaperlessBilling", "tenure", "MonthlyCharges", "TechSupport", "OnlineSecurity", "Dependents", "Partner"]
 
-for i in churn_by_list:
-    print(churn_by(i))
+
+if __name__ == "__main__":
+    print(churn_by("tenure"))
+    
+
 
 
 
