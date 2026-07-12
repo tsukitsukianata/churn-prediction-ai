@@ -40,7 +40,7 @@ Customers on **month-to-month contracts** have the highest churn rate (**42.7%**
 
 ## 2. Churn Rate by Customer Tenure
 
-> **Image Path:** `images/churn_by_tenure_group.png` *(or replace with your actual filename)*
+> **Image Path:** `images/churn_by_tenure_group.png` 
 
 ![Churn by Tenure](images/churn_by_tenure_group.png)
 
