@@ -29,7 +29,7 @@ The objective of this milestone was to transform the cleaned customer dataset in
 
 # Machine Learning Pipeline
 
-> **Insert pipeline diagram here**
+![pre-processsing pipeline](images/ml_preprocessing_pipeline.png)
 
 `images/ml_preprocessing_pipeline.png`
 
