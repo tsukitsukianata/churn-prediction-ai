@@ -47,9 +47,10 @@ report = classification_report(
     target_names=["Stayed", "Churned"]
 )
 
-print(report)
 
 
-#ConfusionMatrixDisplay.from_predictions(y_test, y_pred)
-#plt.show()
+if __name__ == "__main__":
+    ConfusionMatrixDisplay.from_predictions(y_test, y_pred)
+    plt.show()
+    print(report)
 
