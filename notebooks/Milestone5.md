@@ -14,10 +14,10 @@ Hyperparameter tuning was performed using **GridSearchCV**, which evaluates mult
 
 For every hyperparameter combination:
 
-* The training dataset was divided into five folds.
-* Five training and validation cycles were performed.
-* The average validation score across all folds was calculated.
-* The best-performing hyperparameter combination was selected.
+- The training dataset was divided into five folds.
+- Five training and validation cycles were performed.
+- The average validation score across all folds was calculated.
+- The best-performing hyperparameter combination was selected.
 
 Initially, **accuracy** was used as the optimization metric to provide a consistent comparison across all models. Additional experiments were later conducted using **recall** to investigate how different optimization objectives influence model selection for customer churn prediction.
 
@@ -27,10 +27,10 @@ Initially, **accuracy** was used as the optimization metric to provide a consist
 
 The following machine learning models were optimized:
 
-* Logistic Regression
-* Decision Tree
-* Random Forest
-* Support Vector Machine (SVM)
+- Logistic Regression
+- Decision Tree
+- Random Forest
+- Support Vector Machine (SVM)
 
 ---
 
@@ -115,11 +115,11 @@ Although Random Forest achieved the highest cross-validation accuracy, **Logisti
 
 The decision was based on several factors:
 
-* Nearly identical predictive performance compared to Random Forest.
-* Simpler model architecture.
-* Faster training and inference.
-* Easier interpretation of model predictions.
-* Well suited for estimating churn probabilities, which will be used in the deployment phase.
+- Nearly identical predictive performance compared to Random Forest.
+- Simpler model architecture.
+- Faster training and inference.
+- Easier interpretation of model predictions.
+- Well suited for estimating churn probabilities, which will be used in the deployment phase.
 
 ---
 

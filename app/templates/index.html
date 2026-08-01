@@ -1,179 +1,191 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Customer Churn Predictor</title>
 
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-</head>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='style.css') }}"
+    />
+  </head>
 
-<body>
-
+  <body>
     <h1>Customer Churn Prediction</h1>
     <p>Enter the customer's information below.</p>
 
+    <!-- Demo Customer Buttons -->
+    <button type="button" onclick="loadLowRisk()">
+      Load Low Risk Customer
+    </button>
+
+    <button type="button" onclick="loadMediumRisk()">
+      Load Medium Risk Customer
+    </button>
+
+    <button type="button" onclick="loadHighRisk()">
+      Load High Risk Customer
+    </button>
+
+    <br /><br />
+
     <form action="/predict" method="POST">
+      <h2>Customer Information</h2>
 
-        <h2>Customer Information</h2>
+      <label for="gender">Gender</label>
+      <select id="gender" name="gender" required>
+        <option value="" disabled selected>Select Gender</option>
+        <option value="Male">Male</option>
+        <option value="Female">Female</option>
+      </select>
 
-        <label for="gender">Gender</label>
-        <select id="gender" name="gender" required>
-            <option value="" disabled selected>Select Gender</option>
-            <option value="Male">Male</option>
-            <option value="Female">Female</option>
-        </select>
+      <label for="SeniorCitizen">Senior Citizen</label>
+      <select id="SeniorCitizen" name="SeniorCitizen" required>
+        <option value="" disabled selected>Select</option>
+        <option value="0">No</option>
+        <option value="1">Yes</option>
+      </select>
 
-        <label for="SeniorCitizen">Senior Citizen</label>
-        <select id="SeniorCitizen" name="SeniorCitizen" required>
-            <option value="" disabled selected>Select</option>
-            <option value="0">No</option>
-            <option value="1">Yes</option>
-        </select>
+      <label for="Partner">Partner</label>
+      <select id="Partner" name="Partner" required>
+        <option value="" disabled selected>Select</option>
+        <option value="Yes">Yes</option>
+        <option value="No">No</option>
+      </select>
 
-        <label for="Partner">Partner</label>
-        <select id="Partner" name="Partner" required>
-            <option value="" disabled selected>Select</option>
-            <option value="Yes">Yes</option>
-            <option value="No">No</option>
-        </select>
+      <label for="Dependents">Dependents</label>
+      <select id="Dependents" name="Dependents" required>
+        <option value="" disabled selected>Select</option>
+        <option value="Yes">Yes</option>
+        <option value="No">No</option>
+      </select>
 
-        <label for="Dependents">Dependents</label>
-        <select id="Dependents" name="Dependents" required>
-            <option value="" disabled selected>Select</option>
-            <option value="Yes">Yes</option>
-            <option value="No">No</option>
-        </select>
+      <label for="tenure">Tenure (Months)</label>
+      <input type="number" id="tenure" name="tenure" min="0" required />
 
-        <label for="tenure">Tenure (Months)</label>
-        <input
-            type="number"
-            id="tenure"
-            name="tenure"
-            min="0"
-            required
-        >
+      <label for="PhoneService">Phone Service</label>
+      <select id="PhoneService" name="PhoneService" required>
+        <option value="" disabled selected>Select</option>
+        <option value="Yes">Yes</option>
+        <option value="No">No</option>
+      </select>
 
-        <label for="PhoneService">Phone Service</label>
-        <select id="PhoneService" name="PhoneService" required>
-            <option value="" disabled selected>Select</option>
-            <option value="Yes">Yes</option>
-            <option value="No">No</option>
-        </select>
+      <label for="MultipleLines">Multiple Lines</label>
+      <select id="MultipleLines" name="MultipleLines" required>
+        <option value="" disabled selected>Select</option>
+        <option value="No">No</option>
+        <option value="Yes">Yes</option>
+        <option value="No phone service">No phone service</option>
+      </select>
 
-        <label for="MultipleLines">Multiple Lines</label>
-        <select id="MultipleLines" name="MultipleLines" required>
-            <option value="" disabled selected>Select</option>
-            <option value="No">No</option>
-            <option value="Yes">Yes</option>
-            <option value="No phone service">No phone service</option>
-        </select>
+      <label for="InternetService">Internet Service</label>
+      <select id="InternetService" name="InternetService" required>
+        <option value="" disabled selected>Select</option>
+        <option value="DSL">DSL</option>
+        <option value="Fiber optic">Fiber optic</option>
+        <option value="No">No</option>
+      </select>
 
-        <label for="InternetService">Internet Service</label>
-        <select id="InternetService" name="InternetService" required>
-            <option value="" disabled selected>Select</option>
-            <option value="DSL">DSL</option>
-            <option value="Fiber optic">Fiber optic</option>
-            <option value="No">No</option>
-        </select>
+      <label for="OnlineSecurity">Online Security</label>
+      <select id="OnlineSecurity" name="OnlineSecurity" required>
+        <option value="" disabled selected>Select</option>
+        <option value="No">No</option>
+        <option value="Yes">Yes</option>
+        <option value="No internet service">No internet service</option>
+      </select>
 
-        <label for="OnlineSecurity">Online Security</label>
-        <select id="OnlineSecurity" name="OnlineSecurity" required>
-            <option value="" disabled selected>Select</option>
-            <option value="No">No</option>
-            <option value="Yes">Yes</option>
-            <option value="No internet service">No internet service</option>
-        </select>
+      <label for="OnlineBackup">Online Backup</label>
+      <select id="OnlineBackup" name="OnlineBackup" required>
+        <option value="" disabled selected>Select</option>
+        <option value="No">No</option>
+        <option value="Yes">Yes</option>
+        <option value="No internet service">No internet service</option>
+      </select>
 
-        <label for="OnlineBackup">Online Backup</label>
-        <select id="OnlineBackup" name="OnlineBackup" required>
-            <option value="" disabled selected>Select</option>
-            <option value="No">No</option>
-            <option value="Yes">Yes</option>
-            <option value="No internet service">No internet service</option>
-        </select>
+      <label for="DeviceProtection">Device Protection</label>
+      <select id="DeviceProtection" name="DeviceProtection" required>
+        <option value="" disabled selected>Select</option>
+        <option value="No">No</option>
+        <option value="Yes">Yes</option>
+        <option value="No internet service">No internet service</option>
+      </select>
 
-        <label for="DeviceProtection">Device Protection</label>
-        <select id="DeviceProtection" name="DeviceProtection" required>
-            <option value="" disabled selected>Select</option>
-            <option value="No">No</option>
-            <option value="Yes">Yes</option>
-            <option value="No internet service">No internet service</option>
-        </select>
+      <label for="TechSupport">Tech Support</label>
+      <select id="TechSupport" name="TechSupport" required>
+        <option value="" disabled selected>Select</option>
+        <option value="No">No</option>
+        <option value="Yes">Yes</option>
+        <option value="No internet service">No internet service</option>
+      </select>
 
-        <label for="TechSupport">Tech Support</label>
-        <select id="TechSupport" name="TechSupport" required>
-            <option value="" disabled selected>Select</option>
-            <option value="No">No</option>
-            <option value="Yes">Yes</option>
-            <option value="No internet service">No internet service</option>
-        </select>
+      <label for="StreamingTV">Streaming TV</label>
+      <select id="StreamingTV" name="StreamingTV" required>
+        <option value="" disabled selected>Select</option>
+        <option value="No">No</option>
+        <option value="Yes">Yes</option>
+        <option value="No internet service">No internet service</option>
+      </select>
 
-        <label for="StreamingTV">Streaming TV</label>
-        <select id="StreamingTV" name="StreamingTV" required>
-            <option value="" disabled selected>Select</option>
-            <option value="No">No</option>
-            <option value="Yes">Yes</option>
-            <option value="No internet service">No internet service</option>
-        </select>
+      <label for="StreamingMovies">Streaming Movies</label>
+      <select id="StreamingMovies" name="StreamingMovies" required>
+        <option value="" disabled selected>Select</option>
+        <option value="No">No</option>
+        <option value="Yes">Yes</option>
+        <option value="No internet service">No internet service</option>
+      </select>
 
-        <label for="StreamingMovies">Streaming Movies</label>
-        <select id="StreamingMovies" name="StreamingMovies" required>
-            <option value="" disabled selected>Select</option>
-            <option value="No">No</option>
-            <option value="Yes">Yes</option>
-            <option value="No internet service">No internet service</option>
-        </select>
+      <label for="Contract">Contract</label>
+      <select id="Contract" name="Contract" required>
+        <option value="" disabled selected>Select</option>
+        <option value="Month-to-month">Month-to-month</option>
+        <option value="One year">One year</option>
+        <option value="Two year">Two year</option>
+      </select>
 
-        <label for="Contract">Contract</label>
-        <select id="Contract" name="Contract" required>
-            <option value="" disabled selected>Select</option>
-            <option value="Month-to-month">Month-to-month</option>
-            <option value="One year">One year</option>
-            <option value="Two year">Two year</option>
-        </select>
+      <label for="PaperlessBilling">Paperless Billing</label>
+      <select id="PaperlessBilling" name="PaperlessBilling" required>
+        <option value="" disabled selected>Select</option>
+        <option value="Yes">Yes</option>
+        <option value="No">No</option>
+      </select>
 
-        <label for="PaperlessBilling">Paperless Billing</label>
-        <select id="PaperlessBilling" name="PaperlessBilling" required>
-            <option value="" disabled selected>Select</option>
-            <option value="Yes">Yes</option>
-            <option value="No">No</option>
-        </select>
+      <label for="PaymentMethod">Payment Method</label>
+      <select id="PaymentMethod" name="PaymentMethod" required>
+        <option value="" disabled selected>Select</option>
+        <option value="Bank transfer (automatic)">
+          Bank transfer (automatic)
+        </option>
+        <option value="Credit card (automatic)">Credit card (automatic)</option>
+        <option value="Electronic check">Electronic check</option>
+        <option value="Mailed check">Mailed check</option>
+      </select>
 
-        <label for="PaymentMethod">Payment Method</label>
-        <select id="PaymentMethod" name="PaymentMethod" required>
-            <option value="" disabled selected>Select</option>
-            <option value="Bank transfer (automatic)">Bank transfer (automatic)</option>
-            <option value="Credit card (automatic)">Credit card (automatic)</option>
-            <option value="Electronic check">Electronic check</option>
-            <option value="Mailed check">Mailed check</option>
-        </select>
+      <label for="MonthlyCharges">Monthly Charges ($)</label>
+      <input
+        type="number"
+        id="MonthlyCharges"
+        name="MonthlyCharges"
+        min="0"
+        step="0.01"
+        required
+      />
 
-        <label for="MonthlyCharges">Monthly Charges ($)</label>
-        <input
-            type="number"
-            id="MonthlyCharges"
-            name="MonthlyCharges"
-            min="0"
-            step="0.01"
-            required
-        >
+      <label for="TotalCharges">Total Charges ($)</label>
+      <input
+        type="number"
+        id="TotalCharges"
+        name="TotalCharges"
+        min="0"
+        step="0.01"
+        required
+      />
 
-        <label for="TotalCharges">Total Charges ($)</label>
-        <input
-            type="number"
-            id="TotalCharges"
-            name="TotalCharges"
-            min="0"
-            step="0.01"
-            required
-        >
+      <br /><br />
 
-        <br><br>
-
-        <button type="submit">Predict Churn</button>
-
+      <button type="submit">Predict Churn</button>
     </form>
 
-</body>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+  </body>
 </html>
