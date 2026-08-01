@@ -190,3 +190,11 @@ li {
     }
 
 }
+
+.churn {
+    color: #dc2626;
+}
+
+.stay {
+    color: #16a34a;
+}
