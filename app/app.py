@@ -85,23 +85,13 @@ def predict():
         )
 
     # Temporary output
-    return f"""
-    <h2>Prediction Result</h2>
-
-    <p><strong>{prediction_text}</strong></p>
-
-    <p>Probability of Staying: {stay_probability:.2%}</p>
-
-    <p>Probability of Churning: {churn_probability:.2%}</p>
-
-    <br>
-
-    {recommendation_html}
-
-    <br>
-
-    <a href="/">Predict Another Customer</a>
-    """
+    return render_template(
+    "result.html",
+    prediction_text=prediction_text,
+    stay_probability=stay_probability,
+    churn_probability=churn_probability,
+    recommendations=recommendations
+   )
 
 
 # -----------------------------

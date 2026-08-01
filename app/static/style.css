@@ -156,11 +156,24 @@ h2:first-of-type {
     font-weight: bold;
     cursor: pointer;
     transition: 0.25s;
+    display: inline-block;
+    text-decoration: none;
+    text-align: center;
 }
 
 .predict-btn:hover {
     background-color: #1d4ed8;
 }
+
+ul {
+    margin-top: 15px;
+    padding-left: 25px;
+}
+
+li {
+    margin-bottom: 10px;
+}
+
 
 /* -----------------------------
    Mobile

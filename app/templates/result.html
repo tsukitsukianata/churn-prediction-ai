@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Prediction Result</title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='style.css') }}"
+    >
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="form-card">
+
+        <h1>Prediction Result</h1>
+
+        <br>
+
+        <h2>{{ prediction_text }}</h2>
+
+        <br>
+
+        <p>
+            <strong>Probability of Staying:</strong>
+            {{ "%.2f"|format(stay_probability * 100) }}%
+        </p>
+
+        <br>
+
+        <p>
+            <strong>Probability of Churning:</strong>
+            {{ "%.2f"|format(churn_probability * 100) }}%
+        </p>
+
+        <br><br>
+
+        <h2>Recommended Retention Actions</h2>
+
+        <ul>
+
+            {% for recommendation in recommendations %}
+
+                <li>{{ recommendation }}</li>
+
+            {% endfor %}
+
+        </ul>
+
+        <br><br>
+
+        <a href="/" class="predict-btn">
+            Predict Another Customer
+        </a>
+
+    </div>
+
+</div>
+
+</body>
+</html>
